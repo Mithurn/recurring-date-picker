@@ -8,8 +8,7 @@ import {
   getWeekdayNames, 
   isSameDay, 
   isToday,
-  addMonths,
-  addDays
+  addMonths
 } from '@/lib/dateUtils'
 
 export default function PreviewCalendar() {

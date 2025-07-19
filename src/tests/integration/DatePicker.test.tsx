@@ -1,13 +1,23 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
+import React from 'react'
+import { render, screen, fireEvent } from '@testing-library/react'
 import DatePicker from '@/components/DatePicker'
-import { useRecurrenceStore } from '@/store/useRecurrenceStore'
 
 // Mock the store to reset state between tests
 const mockReset = jest.fn()
+const mockSetStartDate = jest.fn()
+const mockSetEndDate = jest.fn()
+const mockSetRecurrenceType = jest.fn()
+const mockSetInterval = jest.fn()
+const mockSetWeekdays = jest.fn()
+const mockSetMonthlyPattern = jest.fn()
+const mockSetMaxOccurrences = jest.fn()
+
 jest.mock('@/store/useRecurrenceStore', () => ({
   useRecurrenceStore: jest.fn(),
 }))
+
+// Import after mocking
+import { useRecurrenceStore } from '@/store/useRecurrenceStore'
 
 describe('DatePicker Integration Tests', () => {
   beforeEach(() => {
@@ -24,16 +34,16 @@ describe('DatePicker Integration Tests', () => {
         weekdays: ['monday'],
         monthlyPattern: null,
         maxOccurrences: 100,
-        setStartDate: jest.fn(),
-        setEndDate: jest.fn(),
-        setRecurrenceType: jest.fn(),
-        setInterval: jest.fn(),
-        setWeekdays: jest.fn(),
-        setMonthlyPattern: jest.fn(),
-        setMaxOccurrences: jest.fn(),
+        setStartDate: mockSetStartDate,
+        setEndDate: mockSetEndDate,
+        setRecurrenceType: mockSetRecurrenceType,
+        setInterval: mockSetInterval,
+        setWeekdays: mockSetWeekdays,
+        setMonthlyPattern: mockSetMonthlyPattern,
+        setMaxOccurrences: mockSetMaxOccurrences,
         reset: mockReset,
       }
-      return selector(state)
+      return selector ? selector(state) : state
     })
   })
 
@@ -86,7 +96,6 @@ describe('DatePicker Integration Tests', () => {
   })
 
   it('shows weekday selector when weekly is selected', async () => {
-    const mockSetRecurrenceType = jest.fn()
     ;(useRecurrenceStore as jest.Mock).mockImplementation((selector) => {
       const state = {
         startDate: null,
@@ -96,16 +105,16 @@ describe('DatePicker Integration Tests', () => {
         weekdays: ['monday'],
         monthlyPattern: null,
         maxOccurrences: 100,
-        setStartDate: jest.fn(),
-        setEndDate: jest.fn(),
+        setStartDate: mockSetStartDate,
+        setEndDate: mockSetEndDate,
         setRecurrenceType: mockSetRecurrenceType,
-        setInterval: jest.fn(),
-        setWeekdays: jest.fn(),
-        setMonthlyPattern: jest.fn(),
-        setMaxOccurrences: jest.fn(),
+        setInterval: mockSetInterval,
+        setWeekdays: mockSetWeekdays,
+        setMonthlyPattern: mockSetMonthlyPattern,
+        setMaxOccurrences: mockSetMaxOccurrences,
         reset: mockReset,
       }
-      return selector(state)
+      return selector ? selector(state) : state
     })
 
     render(<DatePicker />)
@@ -116,7 +125,6 @@ describe('DatePicker Integration Tests', () => {
   })
 
   it('shows monthly pattern selector when monthly is selected', async () => {
-    const mockSetRecurrenceType = jest.fn()
     ;(useRecurrenceStore as jest.Mock).mockImplementation((selector) => {
       const state = {
         startDate: null,
@@ -126,16 +134,16 @@ describe('DatePicker Integration Tests', () => {
         weekdays: ['monday'],
         monthlyPattern: null,
         maxOccurrences: 100,
-        setStartDate: jest.fn(),
-        setEndDate: jest.fn(),
+        setStartDate: mockSetStartDate,
+        setEndDate: mockSetEndDate,
         setRecurrenceType: mockSetRecurrenceType,
-        setInterval: jest.fn(),
-        setWeekdays: jest.fn(),
-        setMonthlyPattern: jest.fn(),
-        setMaxOccurrences: jest.fn(),
+        setInterval: mockSetInterval,
+        setWeekdays: mockSetWeekdays,
+        setMonthlyPattern: mockSetMonthlyPattern,
+        setMaxOccurrences: mockSetMaxOccurrences,
         reset: mockReset,
       }
-      return selector(state)
+      return selector ? selector(state) : state
     })
 
     render(<DatePicker />)
@@ -147,28 +155,6 @@ describe('DatePicker Integration Tests', () => {
 
 describe('DatePicker User Interactions', () => {
   it('allows user to select different recurrence types', async () => {
-    const mockSetRecurrenceType = jest.fn()
-    ;(useRecurrenceStore as jest.Mock).mockImplementation((selector) => {
-      const state = {
-        startDate: null,
-        endDate: null,
-        recurrenceType: 'daily' as const,
-        interval: 1,
-        weekdays: ['monday'],
-        monthlyPattern: null,
-        maxOccurrences: 100,
-        setStartDate: jest.fn(),
-        setEndDate: jest.fn(),
-        setRecurrenceType: mockSetRecurrenceType,
-        setInterval: jest.fn(),
-        setWeekdays: jest.fn(),
-        setMonthlyPattern: jest.fn(),
-        setMaxOccurrences: jest.fn(),
-        reset: mockReset,
-      }
-      return selector(state)
-    })
-
     render(<DatePicker />)
     
     const weeklyButton = screen.getByText('Weekly')
@@ -178,28 +164,6 @@ describe('DatePicker User Interactions', () => {
   })
 
   it('allows user to change interval', async () => {
-    const mockSetInterval = jest.fn()
-    ;(useRecurrenceStore as jest.Mock).mockImplementation((selector) => {
-      const state = {
-        startDate: null,
-        endDate: null,
-        recurrenceType: 'daily' as const,
-        interval: 1,
-        weekdays: ['monday'],
-        monthlyPattern: null,
-        maxOccurrences: 100,
-        setStartDate: jest.fn(),
-        setEndDate: jest.fn(),
-        setRecurrenceType: jest.fn(),
-        setInterval: mockSetInterval,
-        setWeekdays: jest.fn(),
-        setMonthlyPattern: jest.fn(),
-        setMaxOccurrences: jest.fn(),
-        reset: mockReset,
-      }
-      return selector(state)
-    })
-
     render(<DatePicker />)
     
     const intervalInput = screen.getByDisplayValue('1')
