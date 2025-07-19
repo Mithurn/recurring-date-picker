@@ -7,7 +7,7 @@
 * Tailwind CSS
 * Zustand for state management
 * Jest & React Testing Library for testing
-* date-fns for date manipulation
+
 
 ## Features Implemented
 
