@@ -54,7 +54,7 @@ export default function MonthlyPattern() {
           onClick={handleSimpleMonthly}
           className={`px-5 py-3 rounded-xl text-base font-bold transition-all duration-200 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 relative overflow-hidden
             ${
-              !monthlyPattern
+            !monthlyPattern
                 ? 'bg-blue-600 text-white shadow-md scale-105 active:scale-100 active:shadow-sm'
                 : 'bg-white text-blue-700 border border-blue-200 hover:bg-blue-50 hover:scale-105 hover:shadow-md active:scale-95'
             }
@@ -69,7 +69,7 @@ export default function MonthlyPattern() {
           onClick={() => handleNthChange(monthlyPattern?.nth || 1)}
           className={`px-5 py-3 rounded-xl text-base font-bold transition-all duration-200 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 relative overflow-hidden
             ${
-              monthlyPattern
+            monthlyPattern
                 ? 'bg-blue-600 text-white shadow-md scale-105 active:scale-100 active:shadow-sm'
                 : 'bg-white text-blue-700 border border-blue-200 hover:bg-blue-50 hover:scale-105 hover:shadow-md active:scale-95'
             }
@@ -89,34 +89,34 @@ export default function MonthlyPattern() {
           </label>
           <div className="flex items-center gap-3">
             <div className="relative w-32">
-              <select
-                value={monthlyPattern.nth}
-                onChange={(e) => handleNthChange(Number(e.target.value))}
+            <select
+              value={monthlyPattern.nth}
+              onChange={(e) => handleNthChange(Number(e.target.value))}
                 className="w-full px-4 py-2 border border-blue-300 rounded-xl text-base shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none appearance-none bg-white pr-10"
-              >
-                {nthOptions.map(({ value, label }) => (
-                  <option key={value} value={value}>
-                    {label}
-                  </option>
-                ))}
-              </select>
+            >
+              {nthOptions.map(({ value, label }) => (
+                <option key={value} value={value}>
+                  {label}
+                </option>
+              ))}
+            </select>
               <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-blue-400">
                 <svg width="18" height="18" fill="none" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
               </span>
             </div>
             <span className="text-gray-600">of every month</span>
             <div className="relative w-36">
-              <select
-                value={monthlyPattern.weekday}
-                onChange={(e) => handleWeekdayChange(e.target.value as Weekday)}
+            <select
+              value={monthlyPattern.weekday}
+              onChange={(e) => handleWeekdayChange(e.target.value as Weekday)}
                 className="w-full px-4 py-2 border border-blue-300 rounded-xl text-base shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none appearance-none bg-white pr-10"
-              >
-                {weekdayOptions.map(({ value, label }) => (
-                  <option key={value} value={value}>
-                    {label}
-                  </option>
-                ))}
-              </select>
+            >
+              {weekdayOptions.map(({ value, label }) => (
+                <option key={value} value={value}>
+                  {label}
+                </option>
+              ))}
+            </select>
               <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-blue-400">
                 <svg width="18" height="18" fill="none" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
               </span>

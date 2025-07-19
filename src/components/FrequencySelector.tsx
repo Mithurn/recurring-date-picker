@@ -22,7 +22,7 @@ export default function FrequencySelector() {
             onClick={() => setRecurrenceType(opt)}
             className={`px-5 py-3 rounded-xl text-base font-bold transition-all duration-200 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 relative overflow-hidden
               ${
-                recurrenceType === opt
+              recurrenceType === opt
                   ? 'bg-blue-600 text-white shadow-md scale-105 active:scale-100 active:shadow-sm'
                   : 'bg-white text-blue-700 border border-blue-200 hover:bg-blue-50 hover:scale-105 hover:shadow-md active:scale-95'
               }

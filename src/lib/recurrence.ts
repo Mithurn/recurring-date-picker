@@ -135,7 +135,7 @@ export function generateRecurringDates({
             monthlyPattern.weekday
           )
         } else {
-          current.setMonth(current.getMonth() + interval)
+        current.setMonth(current.getMonth() + interval)
         }
         break
       case 'yearly':

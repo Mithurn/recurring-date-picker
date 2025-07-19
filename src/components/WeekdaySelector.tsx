@@ -44,14 +44,14 @@ export default function WeekdaySelector() {
             disabled={weekdays.length === 1 && weekdays.includes(value)}
             className={`p-2 rounded-xl text-base font-bold transition-all duration-200 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 relative overflow-hidden
               ${
-                weekdays.includes(value)
+              weekdays.includes(value)
                   ? 'bg-blue-600 text-white shadow-md scale-105 active:scale-100 active:shadow-sm'
                   : 'bg-white text-blue-700 border border-blue-200 hover:bg-blue-50 hover:scale-105 hover:shadow-md active:scale-95'
               }
               ${
-                weekdays.length === 1 && weekdays.includes(value)
-                  ? 'opacity-50 cursor-not-allowed'
-                  : 'cursor-pointer'
+              weekdays.length === 1 && weekdays.includes(value)
+                ? 'opacity-50 cursor-not-allowed'
+                : 'cursor-pointer'
               }
             `}
           >
