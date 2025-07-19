@@ -5,6 +5,9 @@
 
 <img width="1465" height="742" alt="Screenshot 2025-07-19 at 7 30 54 PM" src="https://github.com/user-attachments/assets/0bf2e9b9-4e33-4ad8-af77-489e243ce668" />
 
+github repo:
+gitpod demo: https://3000-mithurn-recurringdatepi-8kn63mpvws2.ws-us120.gitpod.io
+
 
 
 ## Tech Stack
