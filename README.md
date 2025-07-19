@@ -1,6 +1,7 @@
 # Recurring Date Picker — Pearl Thoughts Assignment
 
-![Uploading Screenshot 2025-07-19 at 7.30.37 PM.png…]()
+<img width="1470" height="956" alt="Screenshot 2025-07-19 at 7 30 37 PM" src="https://github.com/user-attachments/assets/5fdad12c-a5fa-4398-97d9-37f5f1db3426" />
+
 
 <img width="1470" height="956" alt="Screenshot 2025-07-19 at 7 30 54 PM" src="https://github.com/user-attachments/assets/6a457f94-a7e7-4a95-86dc-0dbaaf01d133" />
 
