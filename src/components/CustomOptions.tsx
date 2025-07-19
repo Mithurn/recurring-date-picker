@@ -1,18 +1,28 @@
 'use client'
 
-import { useRecurrenceStore } from '@/stores/useRecurrenceStore'
+import { useRecurrenceStore } from '@/store/useRecurrenceStore'
 
 export default function CustomOptions() {
   const interval = useRecurrenceStore((s) => s.interval)
   const recurrenceType = useRecurrenceStore((s) => s.recurrenceType)
-  const setRecurrence = useRecurrenceStore((s) => s.setRecurrence)
+  const setInterval = useRecurrenceStore((s) => s.setInterval)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = parseInt(e.target.value || '1', 10)
     if (!isNaN(value) && value > 0) {
-      setRecurrence({ interval: value })
+      setInterval(value)
     }
   }
+
+  // Convert "daily" → "days", "weekly" → "weeks", etc.
+  const unitLabel =
+    recurrenceType === 'daily'
+      ? 'days'
+      : recurrenceType === 'weekly'
+      ? 'weeks'
+      : recurrenceType === 'monthly'
+      ? 'months'
+      : 'times'
 
   return (
     <div className="flex items-center gap-3 my-4">
@@ -24,9 +34,7 @@ export default function CustomOptions() {
         onChange={handleChange}
         className="w-16 px-2 py-1 border rounded-md border-gray-300 text-sm focus:ring-2 focus:ring-blue-500"
       />
-      <span className="text-gray-700 text-sm">
-        {recurrenceType.replace('ly', 's')}
-      </span>
+      <span className="text-gray-700 text-sm">{unitLabel}</span>
     </div>
   )
 }
