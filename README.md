@@ -1,9 +1,11 @@
 # Recurring Date Picker — Pearl Thoughts Assignment
 
-<img width="1470" height="956" alt="Screenshot 2025-07-19 at 7 30 37 PM" src="https://github.com/user-attachments/assets/5fdad12c-a5fa-4398-97d9-37f5f1db3426" />
+<img width="1464" height="735" alt="Screenshot 2025-07-19 at 7 30 37 PM" src="https://github.com/user-attachments/assets/2ba27c3c-a97c-41f9-9ecd-f2f5e9e78f48" />
 
 
-<img width="1470" height="956" alt="Screenshot 2025-07-19 at 7 30 54 PM" src="https://github.com/user-attachments/assets/6a457f94-a7e7-4a95-86dc-0dbaaf01d133" />
+<img width="1465" height="742" alt="Screenshot 2025-07-19 at 7 30 54 PM" src="https://github.com/user-attachments/assets/0bf2e9b9-4e33-4ad8-af77-489e243ce668" />
+
+
 
 ## Tech Stack
 
