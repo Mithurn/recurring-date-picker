@@ -1,3 +1,47 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+  .animate-ripple {
+    animation: ripple 0.5s linear;
+  }
+  @keyframes ripple {
+    0% {
+      opacity: 0.5;
+      transform: scale(0.9);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(1.5);
+    }
+  }
+  .animate-pulse-on-hover:hover {
+    animation: pulse-on-hover 0.4s cubic-bezier(0.4,0,0.2,1);
+  }
+  .animate-pulse-on-hover:focus {
+    animation: pulse-on-hover 0.4s cubic-bezier(0.4,0,0.2,1);
+  }
+  @keyframes pulse-on-hover {
+    0% {
+      box-shadow: 0 0 0 0 rgba(59,130,246,0.3);
+    }
+    100% {
+      box-shadow: 0 0 0 8px rgba(59,130,246,0);
+    }
+  }
+  .animate-pulse-on-hover-dot:hover {
+    animation: pulse-on-hover-dot 0.4s cubic-bezier(0.4,0,0.2,1);
+  }
+  .animate-pulse-on-hover-dot:focus {
+    animation: pulse-on-hover-dot 0.4s cubic-bezier(0.4,0,0.2,1);
+  }
+  @keyframes pulse-on-hover-dot {
+    0% {
+      box-shadow: 0 0 0 0 rgba(59,130,246,0.5);
+    }
+    100% {
+      box-shadow: 0 0 0 8px rgba(59,130,246,0);
+    }
+  }
+}

@@ -29,25 +29,26 @@ export default function DateRangePicker() {
   }
 
   return (
-    <div className="space-y-4">
-      <h3 className="text-lg font-medium text-gray-800">Date Range</h3>
+    <div className="space-y-6">
+      <h3 className="text-xl font-bold text-blue-700 mb-2">Date Range</h3>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="space-y-2">
-          <label className="block text-sm font-medium text-gray-700">
+          <label className="block text-base font-semibold text-gray-700">
             Start Date *
           </label>
           <input
             type="date"
             value={formatDateForInput(startDate)}
             onChange={handleStartDateChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            className="w-full px-4 py-2 border border-blue-300 rounded-xl text-base shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none"
             required
+            placeholder="Select start date"
           />
         </div>
 
         <div className="space-y-2">
-          <label className="block text-sm font-medium text-gray-700">
+          <label className="block text-base font-semibold text-gray-700">
             End Date (Optional)
           </label>
           <input
@@ -55,7 +56,8 @@ export default function DateRangePicker() {
             value={formatDateForInput(endDate)}
             onChange={handleEndDateChange}
             min={startDate ? formatDateForInput(startDate) : undefined}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            className="w-full px-4 py-2 border border-blue-300 rounded-xl text-base shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none"
+            placeholder="Select end date"
           />
           <p className="text-xs text-gray-500">
             Leave empty for unlimited recurrence
@@ -65,12 +67,12 @@ export default function DateRangePicker() {
 
       {startDate && (
         <div className="p-3 bg-blue-50 rounded-lg">
-          <p className="text-sm text-blue-800">
-            <span className="font-medium">Start:</span> {startDate.toLocaleDateString()}
+          <p className="text-base text-blue-800">
+            <span className="font-semibold">Start:</span> {startDate.toLocaleDateString()}
             {endDate && (
               <>
                 <br />
-                <span className="font-medium">End:</span> {endDate.toLocaleDateString()}
+                <span className="font-semibold">End:</span> {endDate.toLocaleDateString()}
               </>
             )}
           </p>

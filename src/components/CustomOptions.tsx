@@ -25,16 +25,17 @@ export default function CustomOptions() {
       : 'times'
 
   return (
-    <div className="flex items-center gap-3 my-4">
-      <label className="text-gray-700 text-sm">Repeat every</label>
+    <div className="flex items-center gap-3 my-6">
+      <label className="text-gray-700 text-base font-semibold">Repeat every</label>
       <input
         type="number"
         min={1}
         value={interval}
         onChange={handleChange}
-        className="w-16 px-2 py-1 border rounded-md border-gray-300 text-sm focus:ring-2 focus:ring-blue-500"
+        className="w-20 px-3 py-2 border rounded-xl border-blue-300 text-base shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none"
+        placeholder="Interval"
       />
-      <span className="text-gray-700 text-sm">{unitLabel}</span>
+      <span className="text-gray-700 text-base font-medium">{unitLabel}</span>
     </div>
   )
 }

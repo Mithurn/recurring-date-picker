@@ -33,30 +33,36 @@ export default function WeekdaySelector() {
 
   return (
     <div className="space-y-3">
-      <label className="block text-sm font-medium text-gray-700">
+      <label className="block text-base font-semibold text-gray-700 mb-1">
         Select Days of the Week
       </label>
-      <div className="grid grid-cols-7 gap-1">
+      <div className="grid grid-cols-7 gap-2">
         {weekdaysConst.map(({ value, short }) => (
           <button
             key={value}
             onClick={() => handleWeekdayToggle(value)}
             disabled={weekdays.length === 1 && weekdays.includes(value)}
-            className={`p-2 rounded-lg text-xs font-medium transition-all duration-200 ${
-              weekdays.includes(value)
-                ? 'bg-blue-600 text-white'
-                : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-            } ${
-              weekdays.length === 1 && weekdays.includes(value)
-                ? 'opacity-50 cursor-not-allowed'
-                : 'cursor-pointer'
-            }`}
+            className={`p-2 rounded-xl text-base font-bold transition-all duration-200 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 relative overflow-hidden
+              ${
+                weekdays.includes(value)
+                  ? 'bg-blue-600 text-white shadow-md scale-105 active:scale-100 active:shadow-sm'
+                  : 'bg-white text-blue-700 border border-blue-200 hover:bg-blue-50 hover:scale-105 hover:shadow-md active:scale-95'
+              }
+              ${
+                weekdays.length === 1 && weekdays.includes(value)
+                  ? 'opacity-50 cursor-not-allowed'
+                  : 'cursor-pointer'
+              }
+            `}
           >
             {short}
+            {weekdays.includes(value) && (
+              <span className="absolute inset-0 rounded-xl pointer-events-none animate-ripple bg-blue-200/40"></span>
+            )}
           </button>
         ))}
       </div>
-      <p className="text-xs text-gray-500">
+      <p className="text-xs text-gray-500 mt-1">
         Select the days when this event should occur
       </p>
     </div>

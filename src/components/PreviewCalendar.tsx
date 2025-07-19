@@ -60,22 +60,23 @@ export default function PreviewCalendar() {
 
   return (
     <div className="space-y-4">
-      <div className="flex items-center justify-between">
-        <h3 className="text-lg font-medium text-gray-800">Calendar Preview</h3>
+      <div className="flex items-center justify-between mt-2 mb-6">
+        <h3 className="text-2xl font-extrabold text-blue-700 tracking-tight drop-shadow-sm">Calendar Preview</h3>
         <button
           onClick={goToToday}
-          className="px-3 py-1 text-sm bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+          className="px-3 py-1 text-sm bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors shadow"
         >
           Today
         </button>
       </div>
 
-      <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
+      <div className="bg-white border border-gray-200 rounded-lg overflow-hidden transition-all duration-300 animate-fade-in">
         {/* Calendar Header */}
         <div className="flex items-center justify-between p-4 bg-gray-50 border-b">
           <button
             onClick={goToPreviousMonth}
-            className="p-2 hover:bg-gray-200 rounded-md transition-colors"
+            className="p-2 hover:bg-blue-100 rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400"
+            aria-label="Previous Month"
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -88,7 +89,8 @@ export default function PreviewCalendar() {
           
           <button
             onClick={goToNextMonth}
-            className="p-2 hover:bg-gray-200 rounded-md transition-colors"
+            className="p-2 hover:bg-blue-100 rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400"
+            aria-label="Next Month"
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -99,7 +101,7 @@ export default function PreviewCalendar() {
         {/* Weekday Headers */}
         <div className="grid grid-cols-7 bg-gray-50 border-b">
           {weekdayNames.map((day) => (
-            <div key={day} className="p-2 text-center text-xs font-medium text-gray-600">
+            <div key={day} className="p-2 text-center text-xs font-semibold text-blue-700 tracking-wide">
               {day}
             </div>
           ))}
@@ -117,19 +119,30 @@ export default function PreviewCalendar() {
             return (
               <div
                 key={index}
+                tabIndex={isCurrentMonth ? 0 : -1}
                 className={`
-                  p-2 text-center text-sm border-r border-b border-gray-100 min-h-[40px] flex items-center justify-center
+                  relative p-2 text-center text-sm border-r border-b border-gray-100 min-h-[40px] flex items-center justify-center
+                  transition-all duration-150
                   ${!isCurrentMonth ? 'text-gray-300 bg-gray-50' : 'text-gray-700'}
-                  ${isTodayDate ? 'font-bold bg-blue-100' : ''}
-                  ${isRecurring ? 'font-semibold' : ''}
-                  ${isPast ? 'bg-green-100 text-green-800' : ''}
-                  ${isFuture ? 'bg-blue-100 text-blue-800' : ''}
-                  ${isRecurring && isCurrentMonth ? 'ring-2 ring-blue-500 ring-inset' : ''}
+                  ${isTodayDate ? 'font-bold bg-blue-200 ring-2 ring-blue-500 ring-inset z-10' : ''}
+                  ${isRecurring && isCurrentMonth ? 'font-semibold animate-pulse-on-hover' : ''}
+                  ${isPast ? 'bg-green-50 text-green-800' : ''}
+                  ${isFuture ? 'bg-blue-50 text-blue-800' : ''}
+                  ${isRecurring && isCurrentMonth ? 'hover:scale-110 hover:shadow-lg cursor-pointer hover:shadow-blue-200 focus:shadow-blue-300' : ''}
+                  ${isRecurring && isCurrentMonth ? 'transition-transform' : ''}
                 `}
+                aria-label={
+                  isRecurring
+                    ? `Recurring date: ${date.toDateString()}`
+                    : date.toDateString()
+                }
               >
-                {date.getDate()}
-                {isRecurring && (
-                  <div className="absolute w-1 h-1 bg-blue-600 rounded-full bottom-1"></div>
+                <span className="relative z-10">{date.getDate()}</span>
+                {isRecurring && isCurrentMonth && (
+                  <span className={`absolute bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full
+                    ${isTodayDate ? 'bg-blue-700' : isPast ? 'bg-green-500' : 'bg-blue-500'}
+                    animate-pulse-on-hover-dot
+                  `}></span>
                 )}
               </div>
             )
@@ -138,18 +151,18 @@ export default function PreviewCalendar() {
       </div>
 
       {/* Legend */}
-      <div className="flex flex-wrap gap-4 text-xs">
+      <div className="flex flex-wrap gap-6 text-xs mt-6 p-3 bg-blue-50 border border-blue-100 rounded-lg shadow-sm">
         <div className="flex items-center gap-2">
-          <div className="w-3 h-3 bg-green-100 border border-green-300 rounded"></div>
-          <span>Past occurrences</span>
+          <span className="inline-block w-3 h-3 bg-green-500 rounded-full border border-green-300"></span>
+          <span className="text-green-900 font-medium">Past occurrences</span>
         </div>
         <div className="flex items-center gap-2">
-          <div className="w-3 h-3 bg-blue-100 border border-blue-300 rounded"></div>
-          <span>Future occurrences</span>
+          <span className="inline-block w-3 h-3 bg-blue-500 rounded-full border border-blue-300"></span>
+          <span className="text-blue-900 font-medium">Future occurrences</span>
         </div>
         <div className="flex items-center gap-2">
-          <div className="w-3 h-3 bg-blue-600 rounded-full"></div>
-          <span>Today</span>
+          <span className="inline-block w-3 h-3 bg-blue-700 rounded-full border-2 border-white"></span>
+          <span className="text-blue-900 font-medium">Today</span>
         </div>
       </div>
 

@@ -75,7 +75,6 @@ export function generateRecurringDates({
   maxOccurrences = 100,
 }: RecurrenceOptions): Date[] {
   const dates: Date[] = []
-  let current = new Date(startDate)
   let count = 0
 
   // Check if end date is before start date
@@ -83,6 +82,35 @@ export function generateRecurringDates({
     return []
   }
 
+  if (recurrenceType === 'weekly' && weekdays.length > 0) {
+    // Sort weekdays by their numeric value (Monday=1, ... Sunday=0)
+    const sortedWeekdays = [...weekdays].sort((a, b) => WEEKDAY_MAP[a] - WEEKDAY_MAP[b])
+    // Find the first week start (the Monday of the week containing startDate)
+    let weekStart = new Date(startDate)
+    weekStart.setDate(weekStart.getDate() - ((weekStart.getDay() + 6) % 7)) // Monday as week start
+    while (true) {
+      for (const wd of sortedWeekdays) {
+        const dayOffset = (WEEKDAY_MAP[wd] - 1 + 7) % 7 // Monday=1, so offset from Monday
+        const candidate = new Date(weekStart)
+        candidate.setDate(weekStart.getDate() + dayOffset)
+        if (candidate < startDate) continue
+        if (endDate && candidate > endDate) continue
+        if (!endDate && count >= maxOccurrences) break
+        if (candidate >= startDate && (!endDate || candidate <= endDate)) {
+          dates.push(new Date(candidate))
+          count++
+        }
+        if (!endDate && count >= maxOccurrences) break
+      }
+      // Move to next week by interval
+      weekStart.setDate(weekStart.getDate() + interval * 7)
+      if (endDate && weekStart > endDate) break
+      if (!endDate && count >= maxOccurrences) break
+    }
+    return dates.sort((a, b) => a.getTime() - b.getTime())
+  }
+
+  let current = new Date(startDate)
   while (true) {
     if (endDate && current > endDate) break
     if (!endDate && count >= maxOccurrences) break
@@ -93,34 +121,11 @@ export function generateRecurringDates({
       case 'daily':
         current.setDate(current.getDate() + interval)
         break
-        
       case 'weekly':
-        if (weekdays.length === 0) {
-          // Simple weekly recurrence
-          current.setDate(current.getDate() + interval * 7)
-        } else {
-          // Find next weekday in the list
-          const currentWeekday = current.getDay()
-          const currentWeekdayName = Object.keys(WEEKDAY_MAP).find(
-            key => WEEKDAY_MAP[key as Weekday] === currentWeekday
-          ) as Weekday
-          
-          const currentIndex = weekdays.indexOf(currentWeekdayName)
-          const nextIndex = (currentIndex + 1) % weekdays.length
-          const nextWeekday = weekdays[nextIndex]
-          
-          if (nextIndex === 0) {
-            // Move to next week
-            current.setDate(current.getDate() + interval * 7)
-          }
-          
-          current = getNextWeekday(current, nextWeekday)
-        }
+        current.setDate(current.getDate() + interval * 7)
         break
-        
       case 'monthly':
         if (monthlyPattern) {
-          // Handle "second Tuesday" pattern
           const nextMonth = new Date(current)
           nextMonth.setMonth(current.getMonth() + interval)
           current = getNthWeekdayOfMonth(
@@ -130,19 +135,15 @@ export function generateRecurringDates({
             monthlyPattern.weekday
           )
         } else {
-          // Simple monthly recurrence
           current.setMonth(current.getMonth() + interval)
         }
         break
-        
       case 'yearly':
         current.setFullYear(current.getFullYear() + interval)
         break
-        
       default:
         throw new Error(`Unsupported recurrence type: ${recurrenceType}`)
     }
-
     count++
   }
 

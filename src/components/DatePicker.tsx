@@ -12,29 +12,29 @@ export default function DatePicker() {
   const reset = useRecurrenceStore((s) => s.reset)
 
   return (
-    <div className="max-w-4xl mx-auto bg-white shadow-xl rounded-2xl overflow-hidden">
+    <div className="max-w-4xl mx-auto bg-gradient-to-br from-white via-blue-50 to-blue-100 shadow-2xl rounded-3xl overflow-hidden border border-blue-200 transition-transform duration-200 hover:scale-[1.015]">
       {/* Header */}
-      <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-4">
+      <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-8 py-6 rounded-t-3xl shadow-md">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-2xl font-bold text-white">Recurring Date Picker</h1>
-            <p className="text-blue-100 text-sm mt-1">
-              Create recurring events like in TickTick
+            <h1 className="text-3xl font-extrabold text-white tracking-tight drop-shadow-lg">Recurring Date Picker</h1>
+            <p className="text-blue-100 text-base mt-2 font-medium opacity-90">
+              Create recurring events 
             </p>
           </div>
           <button
             onClick={reset}
-            className="px-4 py-2 bg-white/20 text-white rounded-lg hover:bg-white/30 transition-colors text-sm"
+            className="px-5 py-2 bg-white/30 text-white rounded-xl hover:bg-white/50 transition-colors text-base font-semibold shadow-sm border border-white/30 backdrop-blur"
           >
             Reset
           </button>
         </div>
       </div>
 
-      <div className="p-6 space-y-8">
+      <div className="p-10 space-y-10">
         {/* Configuration Section */}
-        <div className="space-y-6">
-          <h2 className="text-xl font-semibold text-gray-800 border-b pb-2">
+        <div className="space-y-8">
+          <h2 className="text-3xl font-extrabold text-blue-700 border-b-2 border-blue-200 pb-3 tracking-tight drop-shadow-sm">
             Configuration
           </h2>
           
@@ -55,7 +55,7 @@ export default function DatePicker() {
         </div>
 
         {/* Preview Section */}
-        <div className="border-t pt-6">
+        <div className="border-t-2 border-blue-100 pt-12">
           <PreviewCalendar />
         </div>
       </div>

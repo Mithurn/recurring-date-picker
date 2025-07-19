@@ -8,10 +8,10 @@ export default function HomePage() {
       <div className="max-w-6xl mx-auto">
         <div className="mb-8 text-center">
           <h1 className="text-4xl font-bold text-gray-900 mb-2">
-            🗓️ Recurring Date Picker
+             Recurring Date Picker
           </h1>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            A powerful, reusable component for creating recurring events. 
+            reusable component for creating recurring events. 
             Built with Next.js, TypeScript, and Tailwind CSS.
           </p>
         </div>
