@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { RecurrenceType, Weekday, MonthlyPattern, RecurrenceState } from '@/types/recurrence'
+import { RecurrenceState } from '@/types/recurrence'
 
 export const useRecurrenceStore = create<RecurrenceState>((set) => ({
   startDate: null,

@@ -75,7 +75,7 @@ export default function MonthlyPattern() {
             }
           `}
         >
-          Pattern (e.g., "Second Tuesday")
+          Pattern (e.g., &quot;Second Tuesday&quot;)
           {monthlyPattern && (
             <span className="absolute inset-0 rounded-xl pointer-events-none animate-ripple bg-blue-200/40"></span>
           )}

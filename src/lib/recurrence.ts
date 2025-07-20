@@ -86,7 +86,7 @@ export function generateRecurringDates({
     // Sort weekdays by their numeric value (Monday=1, ... Sunday=0)
     const sortedWeekdays = [...weekdays].sort((a, b) => WEEKDAY_MAP[a] - WEEKDAY_MAP[b])
     // Find the first week start (the Monday of the week containing startDate)
-    let weekStart = new Date(startDate)
+    const weekStart = new Date(startDate)
     weekStart.setDate(weekStart.getDate() - ((weekStart.getDay() + 6) % 7)) // Monday as week start
     while (true) {
       for (const wd of sortedWeekdays) {
