@@ -10,7 +10,7 @@ Github: https://github.com/Mithurn/recurring-date-picker
 Cloud IDE: https://grdsq7-3000.csb.app
 
 in case of quick Demo:
-Vercel: https://recurring-date-picker-qys28sz91-mithurns-projects.vercel.app
+Vercel: https://recurring-date-picker-ruddy.vercel.app
 
 loom video link: https://www.loom.com/share/79f5710d86114de68543d42fb74e500b?sid=4d767150-6749-4e83-9314-5fcb800ee8fa
 
