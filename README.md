@@ -5,8 +5,14 @@
 
 <img width="1465" height="742" alt="Screenshot 2025-07-19 at 7 30 54 PM" src="https://github.com/user-attachments/assets/0bf2e9b9-4e33-4ad8-af77-489e243ce668" />
 
-github repo:
-gitpod demo: https://3000-mithurn-recurringdatepi-8kn63mpvws2.ws-us120.gitpod.io
+Github: https://github.com/Mithurn/recurring-date-picker
+
+Cloud IDE: https://grdsq7-3000.csb.app
+
+in case of quick Demo:
+Vercel: https://recurring-date-picker-qys28sz91-mithurns-projects.vercel.app
+
+loom video link: https://www.loom.com/share/79f5710d86114de68543d42fb74e500b?sid=4d767150-6749-4e83-9314-5fcb800ee8fa
 
 
 
