@@ -1,7 +1,7 @@
 /// <reference types="@testing-library/jest-dom" />
 import React from 'react'
 import { render, screen, fireEvent } from '@testing-library/react'
-import DatePicker from '@/components/DatePicker'
+import DatePicker from '../../components/DatePicker'
 
 // Mock the store to reset state between tests
 const mockReset = jest.fn()
@@ -13,12 +13,12 @@ const mockSetWeekdays = jest.fn()
 const mockSetMonthlyPattern = jest.fn()
 const mockSetMaxOccurrences = jest.fn()
 
-jest.mock('@/store/useRecurrenceStore', () => ({
+jest.mock('../../store/useRecurrenceStore', () => ({
   useRecurrenceStore: jest.fn(),
 }))
 
 // Import after mocking
-import { useRecurrenceStore } from '@/store/useRecurrenceStore'
+import { useRecurrenceStore } from '../../store/useRecurrenceStore'
 
 describe('DatePicker Integration Tests', () => {
   beforeEach(() => {
@@ -26,7 +26,7 @@ describe('DatePicker Integration Tests', () => {
     jest.clearAllMocks()
     
     // Mock the store with default values
-    ;(useRecurrenceStore as jest.Mock).mockImplementation((selector) => {
+    ;(useRecurrenceStore as unknown as jest.Mock).mockImplementation((selector) => {
       const state = {
         startDate: null,
         endDate: null,
@@ -97,7 +97,7 @@ describe('DatePicker Integration Tests', () => {
   })
 
   it('shows weekday selector when weekly is selected', async () => {
-    ;(useRecurrenceStore as jest.Mock).mockImplementation((selector) => {
+    ;(useRecurrenceStore as unknown as jest.Mock).mockImplementation((selector) => {
       const state = {
         startDate: null,
         endDate: null,
@@ -126,7 +126,7 @@ describe('DatePicker Integration Tests', () => {
   })
 
   it('shows monthly pattern selector when monthly is selected', async () => {
-    ;(useRecurrenceStore as jest.Mock).mockImplementation((selector) => {
+    ;(useRecurrenceStore as unknown as jest.Mock).mockImplementation((selector) => {
       const state = {
         startDate: null,
         endDate: null,
